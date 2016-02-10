@@ -1,0 +1,16 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+#logo {
+  color: black;
+  text-transform: uppercase;
+}
+
+.nav-item {
+  color: black;
+  font-size: 1.2em;
+}
+
+header {
+  margin-bottom: 50px;
+}
