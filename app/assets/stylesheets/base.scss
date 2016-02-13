@@ -11,7 +11,21 @@
   font-size: 1.2em;
 }
 
+
 input {
   margin-bottom: 15px;
-  width: 100%;
+  &[type="submit"] {
+    width: 100%;
+  }
+}
+
+label span {
+  margin-left: 20px;
+  font-weight: normal;
+}
+
+
+#session_remember_me {
+
+  margin-left: 0;
 }
