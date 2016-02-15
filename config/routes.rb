@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   get 'signin' => 'sessions#new'
   post 'signin' => 'sessions#create'
   resources :users, only: [:new, :create, :index]
+  resources :reviews, only: [:index, :new, :create, :destroy]
 
 end

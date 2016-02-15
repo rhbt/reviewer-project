@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Submit a review</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-offset-3 col-md-6">
+    <%= form_for(@new_review) do |f| %>
+    
+    <%= f.label :url, "URL" %>
+    <%= f.text_field :url, class: "form-control", placeholder: "Enter URL of classified ad here" %>
+    
+    <%= f.label :content, "Review" %>
+    <%= f.text_area :content, placeholder: "Enter your review here", rows:"20", cols: "76" %>
+    
+    <%= f.submit "Submit review", class: "btn btn-primary" %>
+    
+    <% end %>
+    
+  </div>
+</div>

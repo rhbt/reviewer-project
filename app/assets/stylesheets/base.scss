@@ -1,6 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+
+/* header */
+
 #logo {
   color: black;
   text-transform: uppercase;
@@ -11,6 +14,7 @@
   font-size: 1.2em;
 }
 
+/* forms */
 
 input {
   margin-bottom: 15px;
@@ -24,8 +28,23 @@ label span {
   font-weight: normal;
 }
 
+/* form for log in  */
 
 #session_remember_me {
-
   margin-left: 0;
+}
+
+/* form for reviews  */
+
+#review_content {
+  margin-bottom: 10px;
+}
+
+/* home */
+#review-search {
+  margin-top: 20px;
+}
+
+#write-review-link {
+  margin-top: 50px;
 }
