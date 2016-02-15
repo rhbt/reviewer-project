@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+    has_many :reviews
     before_save :downcase_email
     
     validates :username, presence: true, length: { minimum: 3, maximum: 30 }
