@@ -6,12 +6,18 @@ require "net/http"
     if review
       redirect_to review
     else
+      flash[:danger] = "Review for this classified ad does not exist!"
       redirect_to root_path
     end
   end
   
   def show
     @review = Review.find(params[:id])
+    if @review
+      
+    else
+      
+    end
   end
   
   def new
@@ -20,12 +26,10 @@ require "net/http"
 
   def create
     @new_review = Review.new(review_params)
-    review_url = params[:review][:url]
-    if valid_url(review_url) #&& @new_review.save 
+    if  @new_review.save
       redirect_to root_path
-      #redirect_to @new_review
     else 
-      redirect_to new_review_path
+      render 'new'
     end
   end
 
@@ -38,19 +42,6 @@ require "net/http"
     params.require(:review).permit(:url, :content)
   end
   
-  def valid_url(review_url)
-    if !review_url.blank?
-     url = URI.parse(review_url)
-      req = Net::HTTP.new(url.host, url.port)
-      res = req.request_head(url.path)
-     if res.code == "200"
-        true
-     else
-        false
-     end
-     false
-    end
-  end
-  
+
 end
 
