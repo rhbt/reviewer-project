@@ -11,12 +11,13 @@ private
       return
     end
     begin
+      if self.url !~ /\Ahttp:\/\//
+        self.url = "http://#{url}"
+      end
       review_url = URI.parse(url)
       req = Net::HTTP.new(review_url.host, review_url.port)
       res = req.request_head(review_url.path)
-      if res.code == "200"
-        true
-      else
+      if res.code != "200"
         errors.add(:url, "is not valid")
       end
       
