@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
-require "net/http"
+  require "net/http"
+
 
   def index
     review = Review.find_by(url: params[:search])
@@ -26,7 +27,8 @@ require "net/http"
 
   def create
     @new_review = Review.new(review_params)
-    if  @new_review.save
+    
+    if @new_review.save
       redirect_to root_path
     else 
       render 'new'
@@ -41,7 +43,6 @@ require "net/http"
   def review_params
     params.require(:review).permit(:url, :content)
   end
-  
 
 end
 
