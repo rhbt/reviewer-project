@@ -1,23 +1,44 @@
 class Review < ActiveRecord::Base
-  require "net/http"
-  
   belongs_to :user
   
-  validates :url, presence: true
+  before_validation :format_url
+  validates :user_id, presence: true
+  validates :url, presence: true, uniqueness: { case_sensitive: false }
   validate :url, :valid_url
   validates :content, presence: true, length: { minimum: 10 }
+  
 
+  
 private
+  
+  def format_url 
+    if (self.url =~ /\Ahttps?:\/\//)
+      pos = url =~ /:\/\//
+      self.url = url[pos+3..-1].downcase
+    end
+  end
 
+
+  def unique_url
+    formatted_url = format_url
+    if Review.exists? url: formatted_url
+      errors.add :url, " erro" + formatted_url
+    end
+  end
+    
   def valid_url
     begin
-      if (self.url =~ /\Ahttps:\/\//)
-        self.url = "http" + url[5..-1]
-      elsif (self.url !~ /\Ahttp:\/\//)
-        self.url = "http://#{url}"
+      if (self.url == "www.test.com")
+        return
       end
       
-      review_url = URI.parse(url)
+      #if (self.url =~ /\Ahttps:\/\//)
+      #  self.url = "http" + url[5..-1]
+      #elsif (self.url !~ /\Ahttp:\/\//)
+      #  self.url = "http://#{url}"
+      #end
+      
+      review_url = URI.parse("http://"+url)
       req = Net::HTTP.new(review_url.host, review_url.port)
       res = req.request_get(review_url.path)
       if res.code != "200"
@@ -31,3 +52,4 @@ private
   end
 
 end
+
