@@ -1,6 +1,6 @@
 class Review < ActiveRecord::Base
   belongs_to :user
-  has_many :saved_reviews, dependent: :destroy
+  has_many :stickied_reviews, dependent: :destroy
   
   before_validation :format_url
   validates :user_id, presence: true

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class SavedReviewTest < ActiveSupport::TestCase
+class StickiedReviewTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

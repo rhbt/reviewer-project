@@ -8,7 +8,7 @@
       
       <% if logged_in? %>
         <p>
-          <%= form_for(current_user.saved_reviews.build) do |f| %>
+          <%= form_for(current_user.stickied_reviews.build) do |f| %>
             <%= hidden_field_tag :review_id, params[:id] %>
             <%= f.submit "Save this review", class: "btn btn-primary" %>
           <% end %>

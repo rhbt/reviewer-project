@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token
   
   has_many :reviews
-  has_many :saved_reviews, foreign_key: "user_id", dependent: :destroy
-  has_many :saved, through: :saved_reviews,  source: :review
+  has_many :stickied_reviews, foreign_key: "user_id", dependent: :destroy
+  has_many :saved_reviews, through: :stickied_reviews,  source: :review
   
   before_save :downcase_email
     

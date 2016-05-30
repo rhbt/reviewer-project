@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews
-    @saved_reviews = @user.saved
+    @saved_reviews = @user.saved_reviews
   end
   
   def new
