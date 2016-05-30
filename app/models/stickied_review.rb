@@ -1,4 +1,4 @@
-class SavedReview < ActiveRecord::Base
+class StickiedReview < ActiveRecord::Base
   belongs_to :user
   belongs_to :review
 end
