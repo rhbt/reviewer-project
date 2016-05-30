@@ -1,4 +1,13 @@
 <h1><%= @user.email %></h1>
+<div>
   <% @reviews.each do |r| %>
     <p><%= link_to "#{r.url}", r %></p>
   <% end %>
+</div>
+
+<div>
+  <% @saved_reviews.each do |r| %>
+    <p><%= link_to "#{r.url}", r %></p>
+  <% end %>
+</div>
+
