@@ -7,9 +7,15 @@
       </p>
       
       <% if logged_in? %>
-        <p>Save review</p>
+        <p>
+          <%= form_for(current_user.saved_reviews.build) do |f| %>
+            <%= hidden_field_tag :review_id, params[:id] %>
+            <%= f.submit "Save this review", class: "btn btn-primary" %>
+          <% end %>
+        </p>
+        
         <% if current_user?(@review.user) %>
-          <%= link_to "delete", @review, method: :delete,
+          <%= link_to "Delete", @review, method: :delete,
                                        data: { confirm: "You sure?" } %>
         <% end %>
       <% end %>

@@ -1,14 +1,13 @@
 class Review < ActiveRecord::Base
   belongs_to :user
+  has_many :saved_reviews, dependent: :destroy
   
   before_validation :format_url
   validates :user_id, presence: true
   validates :url, presence: true, uniqueness: { case_sensitive: false }
   validate :url, :valid_url
   validates :content, presence: true, length: { minimum: 10 }
-  
 
-  
 private
   
   def format_url 
@@ -31,12 +30,6 @@ private
       if (self.url == "www.test.com")
         return
       end
-      
-      #if (self.url =~ /\Ahttps:\/\//)
-      #  self.url = "http" + url[5..-1]
-      #elsif (self.url !~ /\Ahttp:\/\//)
-      #  self.url = "http://#{url}"
-      #end
       
       review_url = URI.parse("http://"+url)
       req = Net::HTTP.new(review_url.host, review_url.port)
