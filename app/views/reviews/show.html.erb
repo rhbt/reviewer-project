@@ -5,18 +5,23 @@
       <p>
         <%= @review.content %>
       </p>
-      
+  
       <% if logged_in? %>
         <p>
-          <%= form_for(current_user.stickied_reviews.build) do |f| %>
-            <%= hidden_field_tag :review_id, params[:id] %>
-            <%= f.submit "Save this review", class: "btn btn-primary" %>
+    
+          <% if !review_author?(current_user, @review) &&
+          current_user.stickied_reviews.find_by(review_id: params[:id]).nil? %>
+      
+            <%= form_for(current_user.stickied_reviews.build) do |f| %>
+              <%= hidden_field_tag :review_id, params[:id] %>
+              <%= f.submit "Save this review", class: "btn btn-primary" %>
+            <% end %>
           <% end %>
         </p>
         
         <% if current_user?(@review.user) %>
-          <%= link_to "Delete", @review, method: :delete,
-                                       data: { confirm: "You sure?" } %>
+          <%= link_to "Delete", @review, method: :delete, 
+          data: { confirm: "You sure?" } %>
         <% end %>
       <% end %>
       

@@ -16,6 +16,7 @@ class ReviewsController < ApplicationController
   
   def show
     @review = Review.find(params[:id])
+    @author = @review.user
   end
   
   def new
@@ -44,8 +45,10 @@ class ReviewsController < ApplicationController
     url =~ /\Ahttps?:\/\//? url = url[pos+3..-1].downcase : url
   end
   
-  private
+
   
+  private
+ 
     def review_params
       params.require(:review).permit(:url, :content)
     end

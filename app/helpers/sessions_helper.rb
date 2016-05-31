@@ -49,4 +49,10 @@ module SessionsHelper
     end
   end
   
+  def review_author?(user, review) 
+    user == review.user
+  end
+
+
+  
 end
