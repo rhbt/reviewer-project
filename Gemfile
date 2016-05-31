@@ -3,9 +3,9 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.4'
-gem 'bcrypt', '3.1.7'
+gem 'bcrypt','3.1.7'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.18.2'
+gem 'pg', '0.18.2'
 # Use bootstrap for stylesheets
 gem 'bootstrap-sass',       '3.2.0.0'
 # Use SCSS for stylesheets
@@ -48,3 +48,8 @@ group :development do
   gem 'spring'
 end
 
+group :production do
+  gem 'pg', '0.18.2'
+  gem 'rails_12factor', '0.0.2'
+  gem 'puma',           '3.1.0'
+end
