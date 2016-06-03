@@ -1,14 +1,17 @@
 class Review < ActiveRecord::Base
   belongs_to :user
   has_many :stickied_reviews, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   before_validation :format_url
   validates :user_id, presence: true
-  validates :url, presence: true, uniqueness: { case_sensitive: false }
-  validate :url, :valid_url
+  validates :url, presence: true
+  #validates :url, presence: true, uniqueness: { case_sensitive: false}
+  validate :url, :valid_url, :unique_url
   validates :content, presence: true, length: { minimum: 10 }
 
 private
+
   
   def format_url 
     if (self.url =~ /\Ahttps?:\/\//)
@@ -19,9 +22,9 @@ private
 
 
   def unique_url
-    formatted_url = format_url
-    if Review.exists? url: formatted_url
-      errors.add :url, " erro" + formatted_url
+    review = Review.find_by(url: self.url)
+    if review
+      errors.add(:review, '')
     end
   end
     

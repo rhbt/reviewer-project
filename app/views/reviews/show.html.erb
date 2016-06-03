@@ -1,21 +1,46 @@
 <div class="row">
   <div class="col-md-12 text-center">
-    <h1><%= @review.url %></h1>
+
+    <h1><%= link_to @review.url, "http://#{@review.url}", target: "_blank" %></h1>
     <div class="col-md-offset-2 col-md-8">
       <p>
         <%= @review.content %>
       </p>
+      
+      <% @comments.each do |c| %>
+        <p><%= c.user.email %> says: <%= c.content %> at <%= time_ago_in_words(c.created_at) %> ago</p>
+
+        
+            <% if current_user?(c.user) %>
+          <%= link_to "Delete", c, method: :delete, 
+          data: { confirm: "You sure?" } %>
+        <% end %>
+        
+      <% end %>
   
       <% if logged_in? %>
         <p>
     
-          <% if !review_author?(current_user, @review) &&
-          current_user.stickied_reviews.find_by(review_id: params[:id]).nil? %>
+          <% if !review_author?(current_user, @review) %>
+           <% if current_user.stickied_reviews.find_by(review_id: params[:id]).nil? %>
       
             <%= form_for(current_user.stickied_reviews.build) do |f| %>
-              <%= hidden_field_tag :review_id, params[:id] %>
+              <%= f.hidden_field :user_id, current_user.id %>
+              <%= f.hidden_field :review_id, params[:id]%>
+              
               <%= f.submit "Save this review", class: "btn btn-primary" %>
+              <% end %>
+              
             <% end %>
+            
+            <br>
+            <%= form_for(@comment) do |f| %>
+              <%= hidden_field_tag :user_id, current_user.id %>
+              <%= hidden_field_tag :review_id, params[:id]%>
+              <%= f.text_area :content, placeholder: "Write your own review or comment", rows: "10", cols: "70" %>
+              <%= f.submit "Submit comment", class: "btn btn-primary" %>
+            <% end %>
+            
           <% end %>
         </p>
         
