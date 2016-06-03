@@ -11,5 +11,6 @@ Rails.application.routes.draw do
   resources :users
   resources :reviews, only: [:index, :new, :create, :destroy, :show]
   resources :stickied_reviews, only: [:create, :destroy]
+  resources :comments
 
 end

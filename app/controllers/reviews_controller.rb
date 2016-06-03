@@ -17,6 +17,8 @@ class ReviewsController < ApplicationController
   def show
     @review = Review.find(params[:id])
     @author = @review.user
+    @comment = current_user.comments.build
+    @comments = @review.comments
   end
   
   def new
@@ -30,7 +32,14 @@ class ReviewsController < ApplicationController
       flash[:success] = "Review successfully created"
       redirect_to @new_review
     else 
-      render 'new'
+      url = params[:review][:url]
+      review = Review.find_by(url: url)
+      if review
+        flash[:success] = "Review already exists for the ad you were trying to review. Contribute your comments here!"
+        redirect_to review
+      else
+        render 'new'
+      end
     end
   end
 

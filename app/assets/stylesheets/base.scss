@@ -3,6 +3,19 @@
 
 $gray-medium-light: #eaeaea;
 
+
+@font-face {
+  font-family: "test";
+  src: url("/assets/test.woff");
+          font-weight: normal;  
+          font-style: normal;  
+}
+
+.test {
+  font-family: "test";
+}
+
+
 /* header */
 
 #logo {
