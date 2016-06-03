@@ -5,4 +5,5 @@ class Comment < ActiveRecord::Base
   validates :review_id, presence: true
   validates :content, presence: true, length: { minimum: 10 }
   
+  
 end

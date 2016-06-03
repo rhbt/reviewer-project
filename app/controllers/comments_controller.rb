@@ -1,10 +1,13 @@
 class CommentsController < ApplicationController
   before_action :correct_user, only: [:destroy]
+  before_action :able_to_comment, only: [:create]
+  
   def create 
     params[:comment][:user_id] = params[:user_id]
     params[:comment][:review_id] = params[:review_id]
     @comment = current_user.comments.create(comment_params)
     if @comment.save
+      current_user.update_attribute(:last_comment, Time.zone.now)
       flash[:success] = "Comment created"
       redirect_to review_path(params[:review_id])
     else
@@ -22,6 +25,14 @@ class CommentsController < ApplicationController
 
 
   private
+  
+    def able_to_comment
+      if current_user.last_comment > 60.seconds.ago
+        flash[:danger] = "You must wait 60 seconds between comments"
+        redirect_to request.referer || current_user
+      end
+    end
+    
   
     
     def correct_user

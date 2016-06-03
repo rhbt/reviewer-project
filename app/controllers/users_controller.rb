@@ -17,8 +17,11 @@ class UsersController < ApplicationController
   end
   
   def create
+    params[:user][:last_review] = Time.zone.now
+    params[:user][:last_comment] = Time.zone.now
     @user = User.new(user_params)
     if @user.save
+      current_user.update_attribute(:last_comment, Time.zone.now)
       redirect_to root_url
     else
       render 'new'
@@ -38,9 +41,10 @@ class UsersController < ApplicationController
   end
   
   private
-    
+  
+
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation, :last_review, :last_comment)
     end
     
     def correct_user
