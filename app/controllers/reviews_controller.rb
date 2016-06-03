@@ -3,6 +3,7 @@ class ReviewsController < ApplicationController
   
   before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :correct_user, only: [:destroy]
+  before_action :able_to_review, only: [:create]
   
   def index
     review = Review.find_by(url: format_url(params[:search]))
@@ -29,6 +30,7 @@ class ReviewsController < ApplicationController
     @new_review = current_user.reviews.build(review_params)
     
     if @new_review.save
+      current_user.update_attribute(:last_review, Time.zone.now)
       flash[:success] = "Review successfully created"
       redirect_to @new_review
     else 
@@ -57,6 +59,14 @@ class ReviewsController < ApplicationController
 
   
   private
+  
+
+    def able_to_review
+      if current_user.last_review > 60.seconds.ago
+        flash[:danger] = "You must wait 60 seconds between reviews"
+        redirect_to new_review_path
+      end
+    end
  
     def review_params
       params.require(:review).permit(:url, :content)
