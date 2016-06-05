@@ -5,32 +5,228 @@ $gray-medium-light: #eaeaea;
 
 
 @font-face {
-  font-family: "test";
-  src: url("/assets/test.woff");
+  font-family: "Montserrat";
+  src: url("/assets/Montserrat-Regular.otf");
           font-weight: normal;  
-          font-style: normal;  
+          font-style: normal; 
 }
 
-.test {
-  font-family: "test";
+@font-face {
+  font-family: "Montserrat";
+  src: url("/assets/Montserrat-Hairline.otf");
+          font-weight: 100;  
+          font-style: normal; 
 }
 
+@font-face {
+  font-family: "Montserrat";
+  src: url("/assets/Montserrat-Light.otf");
+          font-weight: 300;  
+          font-style: normal; 
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("/assets/Montserrat-UltraLight.otf");
+          font-weight: 200;  
+          font-style: normal; 
+}
+
+
+@mixin montserrat-font($w, $s) {
+  font-family: "Montserrat";
+  font-weight: $w;
+  font-size: $s;
+  }
+
+
+
+/* root page */
+.main-title {
+  @include montserrat-font(200, 36px);
+  margin-top: 5px;
+}
+
+#review-search {
+  width: 40%;
+  height: 55px;
+  font-family: "Montserrat";
+  font-weight: 300;
+  display: inline-block;
+  margin-right: 20px;
+  letter-spacing: .6px;
+  line-height: 150%;
+
+}
+
+div div .search-button {
+  width: 35%;
+  height: 55px;
+  background-color: #29f;
+  font-family: "Montserrat";
+  font-weight: 200;
+  margin-top: -5px;
+  letter-spacing: .6px;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+.review-link {
+  @include montserrat-font(200, 25px);
+  margin-top: 5%;
+}
+
+.section-data {
+  font-family: "Montserrat";
+  font-weight: 200;
+  letter-spacing: .6px;
+  line-height: 150%;
+}
+
+/* sign up */
+
+#new_user {
+  label {
+  font-family: "Montserrat";
+  font-weight: 300;
+  letter-spacing: .6px;
+  line-height: 150%;
+  }
+  input[type=submit] {
+    font-family: "Montserrat";
+    font-weight: 300;
+    letter-spacing: .6px;
+    line-height: 150%;
+    background-color: #29f;
+    text-transform: uppercase;
+  }
+}
+
+/* sign in*/
+
+#signin {
+  @extend #new_user;
+  label span {
+    font-weight: 200;
+  }
+  
+}
+
+/* review form */
+
+#new_review {
+  @extend #new_user;
+  input, textarea {
+    font-family: "Montserrat";
+    font-weight: 200;
+    letter-spacing: .6px;
+  }
+  
+}
+
+/* settings */
+
+.edit_user {
+   @extend #new_user;
+   
+}
+
+/* profile */
+
+.profile-header {
+  font-family: "Montserrat";
+  font-weight: 200;
+  font-size: 26px;
+}
+
+.review-list {
+  p {
+    font-family: "Montserrat";
+    font-weight: 200;
+    letter-spacing: .6px;
+    margin-right: 20px;
+    display: inline-block;
+  }
+  form {
+    display: inline-block;
+  }
+  form input[type=submit] {
+    font-family: "Montserrat";
+    font-weight: 200;
+    width: 85%;
+    background-color: white;
+  }
+}
+
+/* review content */
+
+.review-content-header {
+    margin-top: 10px;
+    font-family: "Montserrat";
+    font-weight: 300;
+    letter-spacing: .6px;
+}
+
+.review-content {
+    margin-bottom: 10px;
+    font-family: "Montserrat";
+    font-weight: 200;
+    letter-spacing: .6px;
+    line-height: 150%;
+}
+
+#new_comment {
+  @extend #new_review;
+  input[type=submit] {
+    width: 53%;
+  }
+}
+
+.comment-form {
+  padding: 3px;
+}
+
+#new_stickied_review {
+   @extend #new_user;
+   width: 53%;
+}
+
+#review-delete {
+  margin-top: 10px;
+  padding-left: 4px;
+  font-family: "Montserrat";
+  font-weight: 200;
+  letter-spacing: .6px;
+}
 
 /* header */
 
 #logo {
-  color: black;
+  font-family: "Montserrat";
+  font-weight: 300;
   text-transform: uppercase;
+  font-size: 18px;
+  color: black;
 }
 
 .nav-item {
+  font-family: "Montserrat";
+  font-weight: 200;
+  text-transform: uppercase;
+  font-size: 13px;
   color: black;
-  font-size: 1.2em;
+}
+
+.user-options li a {
+  font-family: "Montserrat";
+  font-weight: 200;
 }
 
 /* footer */
 
 footer {
+  font-family: "Montserrat";
+  font-weight: 200;
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
