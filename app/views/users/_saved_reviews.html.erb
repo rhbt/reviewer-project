@@ -1,8 +1,8 @@
   <% @saved_reviews.each do |r| %>
-    <p><%= link_to "#{r.url}", r %></p>
-      <%= form_for(current_user.stickied_reviews.find_by(review_id: r.id),
+    <p><%= link_to "#{r.url}", r %> <%= form_for(current_user.stickied_reviews.find_by(review_id: r.id),
               html: { method: :delete }) do |f| %>
                <%= hidden_field_tag :review_id, r.id %>
-                <%= f.submit "Unsave this review", data: { confirm: "You sure?" }, class: "btn" %>
+                <%= f.submit "Unsave this review", data: { confirm: "You sure?" }, class: "btn" %></p>
+      
       <% end %>
   <% end %>

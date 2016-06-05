@@ -1,0 +1,19 @@
+      <% @comments.each do |c| %>
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8 text-left">
+          
+          <div class="review-content-header"><%= c.user.username %> - <%= time_ago_in_words(c.created_at) %> ago </div>
+        
+       <div class="review-content">
+        <%= c.content %>
+                
+            <% if current_user?(c.user) %>
+          <%= link_to "Delete", c, method: :delete, 
+          data: { confirm: "You sure?" } %>
+        <% end %>
+     </div>
+        
+      </div>
+
+        </div>
+      <% end %>
