@@ -8,7 +8,7 @@
   <div class=" col-md-offset-2 col-md-10">
     <%= form_tag reviews_path, method: "get" do %>
       <%= text_field_tag :search, "", class: "form-control", id: "review-search", placeholder: "Enter a URL of a classified ad" %>
-      <%= submit_tag "Search for review", name: nil, class: "btn btn-primary search-button" %>
+      <%= submit_tag "Search for review", name: nil, class: "btn btn-primary", id: "search-button" %>
     <% end %>
   </div>
 </div>

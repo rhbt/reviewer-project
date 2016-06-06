@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h2 class="profile-header">Reviews you've submitted</h2>
+    <h2 class="profile-subheader">Reviews you've submitted</h2>
      <div class="review-list">
       <% @user.reviews.each do |r| %>
         <p><%= link_to "#{r.url}", r %> <%= link_to "Delete", r, method: :delete,
@@ -20,7 +20,7 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h2 class="profile-header">Saved Reviews</h2>
+    <h2 class="profile-subheader">Saved Reviews</h2>
       <div class="review-list">
         <%= render "saved_reviews" %>
       </div>
