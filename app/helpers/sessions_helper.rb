@@ -11,6 +11,20 @@ module SessionsHelper
       end
     end
   end
+
+  def current_user?(user)
+    user == current_user
+  end
+  
+  def log_in(user)
+    session[:user_id] = user.id
+  end
+
+  def log_out
+    forget(current_user)
+    session.delete(:user_id)
+    @current_user = nil
+  end
   
   def remember(user)
     user.remember
@@ -27,20 +41,6 @@ module SessionsHelper
   def logged_in?
     !current_user.nil?
   end
-  
-  def log_in(user)
-    session[:user_id] = user.id
-  end
-
-  def log_out
-    forget(current_user)
-    session.delete(:user_id)
-    @current_user = nil
-  end
-  
-  def current_user?(user)
-    user == current_user
-  end
 
   def logged_in_user
     unless logged_in?
@@ -53,6 +53,4 @@ module SessionsHelper
     user == review.user
   end
 
-
-  
 end

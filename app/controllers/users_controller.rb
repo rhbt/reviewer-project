@@ -8,8 +8,6 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @reviews = @user.reviews
-    @saved_reviews = @user.saved_reviews
   end
   
   def new
@@ -17,15 +15,15 @@ class UsersController < ApplicationController
   end
   
   def create
-    params[:user][:last_review] = Time.zone.now
-    params[:user][:last_comment] = Time.zone.now
     @user = User.new(user_params)
+    
     if @user.save
-      current_user.update_attribute(:last_comment, Time.zone.now)
+      log_in(@user)
       redirect_to root_url
     else
-      render 'new'
+      render "new"
     end
+    
   end
   
   def edit
@@ -33,18 +31,17 @@ class UsersController < ApplicationController
 
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "Your account has been updated."
       redirect_to @user
     else
-      render 'edit'
+      render "edit"
     end
   end
   
   private
-  
 
     def user_params
-      params.require(:user).permit(:username, :email, :password, :password_confirmation, :last_review, :last_comment)
+      params.require(:user).permit(:username, :email, :password, :password_confirmation)
     end
     
     def correct_user

@@ -1,10 +1,8 @@
 class ReviewsController < ApplicationController
-  #only allow 1 post per minute
-  
   before_action :logged_in_user, only: [:new, :create, :destroy]
-  before_action :correct_user, only: [:destroy]
   before_action :able_to_review, only: [:create]
-  
+  before_action :correct_user, only: [:destroy]
+
   def index
     review = Review.find_by(url: format_url(params[:search]))
     if review
@@ -17,9 +15,7 @@ class ReviewsController < ApplicationController
   
   def show
     @review = Review.find(params[:id])
-    @author = @review.user
     @comment = current_user.comments.build
-    @comments = @review.comments
   end
   
   def new
@@ -33,12 +29,15 @@ class ReviewsController < ApplicationController
       current_user.update_attribute(:last_review, Time.zone.now)
       flash[:success] = "Review successfully created"
       redirect_to @new_review
+      
     else 
-      url = params[:review][:url]
-      review = Review.find_by(url: url)
+      review = Review.find_by(url: format_url(params[:review][:url]))
+      
       if review
-        flash[:success] = "Review already exists for the ad you were trying to review. Contribute your comments here!"
-        redirect_to review
+        flash[:success] = "Review already exists for the ad you were trying to review. 
+        Contribute your comments here!"
+        redirect_to review 
+        
       else
         render 'new'
       end
@@ -47,19 +46,20 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    flash[:success] = "Micropost deleted"
+    flash[:success] = "Review delete successfully"
     redirect_to root_url
   end
-
-  def format_url(url)
-    pos = url =~ /:\/\//
-    url =~ /\Ahttps?:\/\//? url = url[pos+3..-1].downcase : url
-  end
-  
-
   
   private
-  
+
+    def review_params
+      params.require(:review).permit(:url, :content)
+    end
+
+    def format_url(url)
+        pos = url =~ /:\/\//
+        url =~ /\Ahttps?:\/\//? url = url[pos+3..-1].downcase : url
+    end
 
     def able_to_review
       if current_user.last_review > 60.seconds.ago
@@ -67,11 +67,7 @@ class ReviewsController < ApplicationController
         redirect_to new_review_path
       end
     end
- 
-    def review_params
-      params.require(:review).permit(:url, :content)
-    end
-    
+
     def correct_user
       @review = Review.find(params[:id])
       if current_user.id != @review.user_id

@@ -1,12 +1,14 @@
 <div class="row">
-        <div class="col-md-offset-2 col-md-8 text-left">
-          
-          <div class="review-content-header"><%= @author.username %> - <%= time_ago_in_words(@review.created_at) %> ago </div>
+  <div class="col-md-offset-2 col-md-8 text-left">
+    
+    <div class="review-content-header">
+      <%= @review.user.username %> - 
+      <%= time_ago_in_words(@review.created_at) %> ago 
+    </div>
         
-       <div class="review-content">
-        <%= @review.content %>
+    <div class="review-content">
+      <%= @review.content %>
+    </div>
+    
+  </div>
 </div>
-        
-      </div>
-
-        </div>
