@@ -5,16 +5,18 @@ class User < ActiveRecord::Base
   has_many :comments, dependent: :destroy
   has_many :stickied_reviews, foreign_key: "user_id", dependent: :destroy
   has_many :saved_reviews, through: :stickied_reviews,  source: :review
-  
-  before_save :downcase_email
     
   validates :username, presence: true, length: { minimum: 3, maximum: 30 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
                   format: { with: VALID_EMAIL_REGEX }, 
                   uniqueness: { case_sensitive: false }
-  has_secure_password 
   validates :password, presence: true, length: { minimum: 6 }
+
+  before_create :set_times
+  before_save :downcase_email
+  
+  has_secure_password 
 
   # Returns the hash digest of the given string.
   def User.digest(string)
@@ -46,6 +48,11 @@ class User < ActiveRecord::Base
   end
 
   private 
+    
+    def set_times
+      self.last_comment = 60.seconds.ago
+      self.last_review = Time.zone.now
+    end
     
     def downcase_email
       self.email = email.downcase

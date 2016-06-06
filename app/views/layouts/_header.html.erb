@@ -1,9 +1,9 @@
 <header class="navbar">
   <div class="container">
+    
     <div class="navbar-header">
       <div class="navbar-brand">
         <%= link_to "Classified Reviewer", root_path, id: 'logo' %>
-        
       </div>
     </div>
     
@@ -13,7 +13,6 @@
         <li><%= link_to "Help", help_path, class: 'nav-item' %></li>
         
         <% if logged_in? %>
-
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               Account <b class="caret"></b>
@@ -34,5 +33,6 @@
         <% end %>
       </ul>
     </nav>
+ 
   </div>
 </header>
