@@ -77,12 +77,19 @@ body * {
 /* forms */
 
 .form-general {
+  input {
+    margin-bottom: 15px;
+  }
   label {
-  font-weight: 300 !important;
-  letter-spacing: .6px;
-  line-height: 150%;
+    font-weight: 300 !important;
+    letter-spacing: .6px;
+    line-height: 150%;
+    span {
+      margin-left: 20px;
+    }
   }
   input[type=submit] {
+    width: 100%;
     background-color: $light-blue;
     font-weight: 300 !important;
     letter-spacing: .6px;
@@ -90,6 +97,16 @@ body * {
   }
 }
 
+#error_explanation {
+  color: red;
+  ul {
+    margin: 0 0 30px 0;
+  }
+}
+
+#session_remember_me {
+  margin-left: 0;
+}
 
 /* profile */
 
@@ -153,31 +170,20 @@ body * {
 /* header */
 
 #logo {
-  font-family: "Montserrat";
+  font-size: 18px;
   font-weight: 300;
   text-transform: uppercase;
-  font-size: 18px;
   color: black;
 }
 
-.nav-item {
-  font-family: "Montserrat";
-  font-weight: 200;
+header.nav-item {
   text-transform: uppercase;
   font-size: 13px;
-  color: black;
-}
-
-.user-options li a {
-  font-family: "Montserrat";
-  font-weight: 200;
 }
 
 /* footer */
 
 footer {
-  font-family: "Montserrat";
-  font-weight: 200;
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
@@ -201,36 +207,10 @@ footer {
   }
 }
 
-/* forms */
-
-input {
-  margin-bottom: 15px;
-  &[type="submit"] {
-    width: 100%;
-  }
-}
-
-label span {
-  margin-left: 20px;
-  font-weight: normal;
-}
-
-/* form for log in  */
-
-#session_remember_me {
-  margin-left: 0;
-}
-
-/* home */
+/* debug */
 
 .debug_dump {
   margin-top: 45px;
 }
 
-#error_explanation {
-  color: red;
-  ul {
-    color: red;
-    margin: 0 0 30px 0;
-  }
-}
+
