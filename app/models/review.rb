@@ -9,14 +9,17 @@ class Review < ActiveRecord::Base
   validates :url, presence: true, uniqueness: { case_sensitive: false }
   validate :url, :valid_url
   validates :content, presence: true, length: { minimum: 10 }
-
+  validates :rating, presence: true, inclusion: 1..5
+  
 private
 
   def format_url 
+    self.url = url.strip
     if self.url =~ /\Ahttps?:\/\//
       pos = url =~ /:\/\//
       self.url = url[pos+3..-1].downcase
     end
+    url 
   end
     
   def valid_url

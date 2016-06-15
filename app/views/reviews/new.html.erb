@@ -9,11 +9,18 @@
     
     <%= form_for(@new_review, html: { class: "form-general" }) do |f| %>
     
-      <%= render 'shared/error_messages', object: f.object %>
+      <%= render "shared/error_messages", object: f.object %>
       
       <%= f.label :url, "URL" %>
       <%= f.text_field :url, class: "form-control", placeholder: "Copy and paste URL here" %>
-      
+      <div>
+        <%= f.label :rating, "Rate how everything went" %>
+        
+        <div class="star-rating">
+          <%= render "shared/star_rating", f: f %>
+        </div>
+        
+      </div>
       <%= f.label :content, "Review" %>
       <%= f.text_area :content, placeholder: "Enter your review here", rows:"20", cols: "76" %>
       

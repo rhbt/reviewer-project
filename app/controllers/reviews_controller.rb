@@ -39,7 +39,7 @@ class ReviewsController < ApplicationController
         redirect_to review 
         
       else
-        render 'new'
+        redirect_to new_review_path
       end
     end
   end
@@ -53,10 +53,11 @@ class ReviewsController < ApplicationController
   private
 
     def review_params
-      params.require(:review).permit(:url, :content)
+      params.require(:review).permit(:url, :content, :rating)
     end
 
     def format_url(url)
+        url = url.strip
         pos = url =~ /:\/\//
         url =~ /\Ahttps?:\/\//? url = url[pos+3..-1].downcase : url
     end
