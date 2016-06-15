@@ -10,8 +10,10 @@
       <div class="review-comment">
         <%= c.content %>
           <% if current_user?(c.user) %>
-            <%= link_to "Delete", c, method: :delete, 
-            data: { confirm: "You sure?" } %>
+            <div class="comment-delete">
+              <%= link_to "Delete", c, method: :delete, 
+              data: { confirm: "You sure?" } %>
+            </div>
           <% end %>
       </div>
         
