@@ -15,7 +15,9 @@ class ReviewsController < ApplicationController
   
   def show
     @review = Review.find(params[:id])
-    @comment = current_user.comments.build
+    if logged_in?
+      @comment = current_user.comments.build
+    end
   end
   
   def new
@@ -39,18 +41,17 @@ class ReviewsController < ApplicationController
         redirect_to review 
         
       else
-        redirect_to new_review_path
+        render "new"
       end
     end
   end
+
 
   def destroy
     @review.destroy
     flash[:success] = "Review delete successfully"
     redirect_to root_url
   end
-  
-  private
 
     def review_params
       params.require(:review).permit(:url, :content, :rating)

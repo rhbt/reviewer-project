@@ -4,7 +4,7 @@
         <%= form_for(current_user.stickied_reviews.find_by(review_id: r.id),
         html: { method: :delete }) do |f| %>
         <%= hidden_field_tag :review_id, r.id %>
-        <%= render "shared/static_rating", rating: r.rating %>
+        <%= render "shared/static_rating", rating: calculate_rating(r) %>
         <%= f.submit "Unsave this review", data: { confirm: "You sure?" }, class: "button-general" %>
     </div>
   <% end %>

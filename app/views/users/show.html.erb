@@ -11,7 +11,7 @@
       <% @user.reviews.each do |r| %>
         <p>
           <%= link_to "#{r.url}", r %> 
-          <%= render "shared/static_rating", rating: r.rating %>
+          <%= render "shared/static_rating", rating: calculate_rating(r) %>
           <%= link_to "Delete", r, class: "button-general", method: :delete,
         data: { confirm: "You sure?" } %></p>
       <% end %>
