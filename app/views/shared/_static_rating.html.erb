@@ -1,10 +1,14 @@
 <span class="static-rating">
+
+<% fract = (rating - rating.floor).round(1) %>
+
 <% (1..5).each do |i| %>
   <% if i <= rating %>  
     <%= image_tag("red_star.gif") %>
+  <% elsif i-rating.floor == 1 && fract >= 0.5 %>
+    <%= image_tag("half_filled_star.gif") %>
   <% else %>
     <%= image_tag("empty_star.gif") %>
   <% end %>
 <% end %>
 </span>
-  

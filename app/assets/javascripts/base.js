@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $(document).on('mouseenter', ".star-empty", function() { 
+  $(document).on("mouseenter", ".star-empty", function() { 
     var pos = parseInt($(this).attr("id")[0]);
     
       for (i = pos; i > 0 ; i--) {

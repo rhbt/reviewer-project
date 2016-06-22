@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post "login" => "sessions#create"
   delete "logout"  => "sessions#destroy"
   
+  
   resources :users
   resources :reviews, only: [:index, :new, :create, :destroy, :show]
   resources :stickied_reviews, only: [:create, :destroy]

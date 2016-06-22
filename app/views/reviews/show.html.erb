@@ -2,13 +2,13 @@
   <div class="col-md-12 text-center">
     <h1 class="main-title"><%= link_to @review.url, 
     "http://#{@review.url}", target: "_blank" %>
-    <%= render "shared/static_rating", rating: @review.rating %>
+    <%= render "shared/static_rating", rating: calculate_rating(@review) %>
     </h1>
     <%= render "save" %>
   </div>
 </div>
 
-
+<%= @test %>
   
 <%= render "content" %>
       
@@ -18,15 +18,22 @@
   <% if !review_author?(current_user, @review) %>
     <div class="row">
       <div class="col-md-offset-2 col-md-10 text-left">
-            
-            <%= form_for(@comment) do |f| %>
+        
 
-              <%= f.hidden_field :review_id, value: params[:id] %>
-              <%= f.text_area :content, placeholder: "Write your own review or comment", 
-              rows: "10", cols: "70" %>
-              <%= f.submit "Submit comment", class: "btn btn-primary" %>
-              
-            <% end %>
+        <%= form_for(@comment, html: { class: "form-general" }) do |f| %>
+        
+          <%= render "shared/error_messages", object: f.object %>
+          
+          <%= f.hidden_field :review_id, value: params[:id] %>
+          <%= f.label :rating, "Rate how everything went" %>
+          <div class="star-rating">
+            <%= render "shared/star_rating", f: f %>
+          </div>
+          <%= f.text_area :content, placeholder: "Write your own review or comment", 
+          rows: "10", cols: "70" %>
+          <%= f.submit "Submit comment", class: "btn btn-primary" %>
+                
+        <% end %>
       </div>
     </div>
   <% end %>
