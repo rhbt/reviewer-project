@@ -6,28 +6,28 @@ $light-blue: #29f;
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/assets/Montserrat-Regular.otf");
+  src: font-url(asset-path("Montserrat-Regular.otf"));
           font-weight: normal;  
           font-style: normal; 
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/assets/Montserrat-Hairline.otf");
+  src: font-url(asset-path("Montserrat-Hairline.otf"));
           font-weight: 100;  
           font-style: normal; 
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/assets/Montserrat-Light.otf");
+  src: font-url(asset-path("Montserrat-Light.otf"));
           font-weight: 300;  
           font-style: normal; 
 }
 
 @font-face {
   font-family: "Montserrat";
-  src: url("/assets/Montserrat-UltraLight.otf");
+  src: font-url(asset-path("Montserrat-UltraLight.otf"));
           font-weight: 200;  
           font-style: normal; 
 }
@@ -154,6 +154,7 @@ body * {
 }
 
 #new_comment {
+  margin-top: 30px;
   textarea {
   letter-spacing: .6px;
   line-height: 150%;
