@@ -93,7 +93,7 @@ function validateSignup(e, type) {
   usernameErrorExist = usernameError(username);
   emailErrorExist = emailError(email);
   passErrorExist = passError(password);  
-  verifyErrorExist = verifyError(pass_verify);
+  verifyErrorExist = verifyError(password, pass_verify);
     
   if (usernameErrorExist) {errors.push(usernameErrorExist);}
   if (emailErrorExist) {errors.push(emailErrorExist);}
