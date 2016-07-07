@@ -197,28 +197,28 @@ div #review-delete {
   cursor:pointer;
   width: 17px;
   height: 17px;
-  background: url("empty_star.gif");
+  background: image-url("empty_star.gif");
 }
 
 .star-rating > .star-full{
   cursor:pointer;
   width: 17px;
   height: 17px;
-  background: url("filled_star.gif");
+  background: image-url("filled_star.gif");
 }
 
 .star-rating > .star-red{
   cursor:pointer;
   width: 17px;
   height: 17px;
-  background: url("red_star.gif");
+  background: image-url("red_star.gif");
 }
 
 .star-rating > .star-end{
   cursor:pointer;
   width: 17px;
   height: 17px;
-  background: url("empty_star.gif");
+  background: image-url("empty_star.gif");
 }
 
 
