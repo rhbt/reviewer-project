@@ -16,6 +16,7 @@ $(document).on('ready page:load', function() {
    
 })
 
+// Helper functions
 function remove_previous() {
   if ($("#error_explanation").length) { $("#error_explanation").remove(); }
 }
@@ -24,6 +25,19 @@ function isEmpty(s) {
   return s.length == 0;
 }
 
+function showErrors(errors, type) {
+  $("#new_" + type).prepend("<div id='error_explanation'></div>");
+  $("#error_explanation").prepend("<div class='alert alert-danger'> This form contains " +
+  errors.length + " errors" + "</div>");
+  
+  $("#error_explanation").append("<ul></ul>");
+  
+  for (var i in errors) {
+    $("#error_explanation > ul").append("<li>" + errors[i] + "</li>");
+  }
+}
+
+// Input checkers
 function ratingError(rating) {
   if (rating >= 1 && rating <= 5) {
     return false;
@@ -66,18 +80,7 @@ function verifyError(password, verify) {
   else {return false;}
 }
 
-function showErrors(errors, type) {
-  $("#new_" + type).prepend("<div id='error_explanation'></div>");
-  $("#error_explanation").prepend("<div class='alert alert-danger'> This form contains " +
-  errors.length + " errors" + "</div>");
-  
-  $("#error_explanation").append("<ul></ul>");
-  
-  for (var i in errors) {
-    $("#error_explanation > ul").append("<li>" + errors[i] + "</li>");
-  }
-}
-
+// Signup validation
 function validateSignup(e, type) {
   var errors = [];
   
@@ -103,6 +106,7 @@ function validateSignup(e, type) {
   }
 }
 
+// Review and comment validation
 function validateContent(e, type) {
   var errors = [];
 
