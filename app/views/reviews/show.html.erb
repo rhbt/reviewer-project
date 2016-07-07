@@ -3,21 +3,20 @@
     <h1 class="main-title"><%= link_to @review.url, 
     "http://#{@review.url}", target: "_blank" %>
     <%= render "shared/static_rating", rating: calculate_rating(@review) %>
+    <%=render "delete" %>
     </h1>
     <%= render "save" %>
   </div>
 </div>
 
-<%= @test %>
-  
 <%= render "content" %>
       
 <%= render "comments" %>
   
 <% if logged_in? %>
-  <% if !review_author?(current_user, @review) %>
+
     <div class="row">
-      <div class="col-md-offset-2 col-md-10 text-left">
+      <div class="col-md-offset-2 col-md-8 text-left">
         
 
         <%= form_for(@comment, html: { class: "form-general" }) do |f| %>
@@ -36,10 +35,10 @@
         <% end %>
       </div>
     </div>
-  <% end %>
+
 <% end %>         
 
-<%=render "delete" %>
+
         
 
       

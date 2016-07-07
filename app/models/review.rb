@@ -12,7 +12,7 @@ class Review < ActiveRecord::Base
   validates :rating, presence: true, inclusion: 1..5
   
 private
-
+#downcase
   def format_url 
     self.url = url.strip
     if self.url =~ /\Ahttps?:\/\//
@@ -32,7 +32,7 @@ private
       req = Net::HTTP.new(review_url.host, review_url.port)
       res = req.request_get(review_url.path)
       if res.code != "200"
-        errors.add(:url, "is not valid #{res.code}")
+        errors.add(:url, "is not valid")
       end
       
     rescue

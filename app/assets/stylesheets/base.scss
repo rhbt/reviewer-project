@@ -139,6 +139,9 @@ body * {
 /* review CSS */
 
 .review-comment-header {
+    &.op-comment-header {
+      color: #428bca;;
+    }
     margin-top: 10px;
     font-weight: 300 !important;
     letter-spacing: .6px;

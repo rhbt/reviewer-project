@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-md-offset-3 col-md-6 signin">
     
-    <%= form_for(:session, url: login_path, html: { class: "form-general" }) do |f| %>
+    <%= form_for(:session, url: login_path, html: { class: "form-general", id: "new_session" }) do |f| %>
     
     <%= f.label :email %>
     <%= f.email_field :email, class: "form-control" %>
