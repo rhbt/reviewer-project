@@ -1,5 +1,5 @@
 <% @review.comments.each do |c| %>
-  <div class="row">
+  <div class="row" id="comment-<%=c.id%>">
     <div class="col-md-offset-2 col-md-8 text-left">
       
       <div class="review-comment-header 
@@ -9,13 +9,17 @@
       ">
         <%= c.user.username %> - 
         <%= time_ago_in_words(c.created_at) %> ago 
+        <%if c.rating != nil %>
+          <%= render "shared/comment_rating", rating: c.rating %>
+        <% end %>
+        
       </div>
         
       <div class="review-comment">
         <%= c.content %>
           <% if current_user?(c.user) %>
             <div class="comment-delete">
-              <%= link_to "Delete", c, method: :delete, 
+              <%= link_to "Delete", c, method: :delete, remote: :true,
               data: { confirm: "You sure?" } %>
             </div>
           <% end %>

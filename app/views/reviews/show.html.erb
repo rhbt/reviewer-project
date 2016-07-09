@@ -9,15 +9,16 @@
   </div>
 </div>
 
-<%= render "content" %>
-      
-<%= render "comments" %>
-  
-<% if logged_in? %>
-
-    <div class="row">
-      <div class="col-md-offset-2 col-md-8 text-left">
+<div class="comment-container">
+  <%= render "content" %>
         
+  <%= render "comments" %>
+    
+  <% if logged_in? %>
+</div>
+
+    <div class="row"> 
+      <div class="col-md-offset-2 col-md-8 text-left">
 
         <%= form_for(@comment, html: { class: "form-general" }) do |f| %>
         

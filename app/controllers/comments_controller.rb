@@ -5,23 +5,35 @@ class CommentsController < ApplicationController
   def create 
     @comment = current_user.comments.create(comment_params)
     @review = Review.find_by(id: params[:comment][:review_id])
-    
+  
+
+
     if @comment.save
       current_user.update_attribute(:last_comment, Time.zone.now)
-      flash[:success] = "Comment created"
       @review.increment!(:total_ratings)
       @review.update_attribute(:rating, @review.rating + @comment.rating)
-      
+
     else
         flash[:error] = @comment.errors.full_messages
     end
-      redirect_to request.referer || review_path(params[:review_id])
+    
+    respond_to do |format|
+      format.html { redirect_to request.referer || review_path(params[:review_id]) }
+      format.js
+    end
+
   end
   
   def destroy
+    @review = Review.find_by(id: @comment.review_id)
+    @review.update_attributes(total_ratings: @review.total_ratings - 1, rating: @review.rating - @comment.rating)
     @comment.destroy
-    flash[:success] = "Comment deleted"
-    redirect_to request.referer || review_path(params[:review_id])
+    
+    respond_to do |format|
+      format.html { redirect_to request.referer || review_path(params[:review_id]) }
+      format.js
+    end
+    
   end
 
   private
@@ -31,9 +43,18 @@ class CommentsController < ApplicationController
     end
   
     def able_to_comment
-      if current_user.last_comment > 45.seconds.ago
-        flash[:danger] = "You must wait 45 seconds between comments"
-        redirect_to request.referer || current_user
+      last_comment = current_user.last_comment
+      if last_comment  > 30.seconds.ago
+        
+        @time_left = (last_comment - 30.seconds.ago).to_i
+        
+        flash.now[:danger] = "You must wait #{@time_left} seconds before commenting again"
+        
+        respond_to do |format|
+          format.html { redirect_to request.referer || current_user }
+          format.js { render 'comment_time_error.js.erb' }
+        end
+        
       end
     end
   

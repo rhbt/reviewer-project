@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
   end
   
   def show
+    
     @review = Review.find(params[:id])
     if logged_in?
       @comment = current_user.comments.build

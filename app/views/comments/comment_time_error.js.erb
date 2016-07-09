@@ -1,0 +1,6 @@
+$("#new_comment").prepend("<div id='error_explanation'></div>");
+$("#error_explanation").prepend("<div class='alert alert-danger'> This form contains " +
+"1" + " error" + "</div>");
+  
+$("#error_explanation").append("<ul></ul>");
+$("#error_explanation > ul").append("<li>You must wait " + "<%= @time_left %>" + " seconds before commenting again" + "</li>");
