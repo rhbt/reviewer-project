@@ -4,10 +4,10 @@ $(document).on('ready page:load', function() {
      validateContent(e, "review");
    })
    
-   $("#new_comment").on("submit", function(e) {
-     remove_previous()
-     validateContent(e, "comment");
-   })
+  $("#new_comment").on("submit", function(e) {
+    remove_previous()
+    validateContent(e, "comment");
+  })
    
    $("#new_user").on("submit", function(e) {
      remove_previous()
@@ -80,6 +80,7 @@ function verifyError(password, verify) {
   else {return false;}
 }
 
+
 // Signup validation
 function validateSignup(e, type) {
   var errors = [];
@@ -112,14 +113,21 @@ function validateContent(e, type) {
 
   var rating = $("input:radio[name ='" + type + "[rating]']:checked").val();
   var content = $("#" + type + "_content").val();
-    
+  
   var ratingErrorExist = ratingError(rating);
   var contentErrorExist = contentError(content);
-    
-  if (ratingErrorExist) { errors.push(ratingErrorExist); }
-  if (contentErrorExist) { errors.push(contentErrorExist); }
   
-  if (errors.length != 0) {
+    
+  if (ratingErrorExist) {errors.push(ratingErrorExist);}
+  if (contentErrorExist) {errors.push(contentErrorExist);}
+  
+
+  
+  if (type == "comment" && errors.length == 0) {
+    $("#new_comment").attr("data-remote", "true");
+  }
+  
+  else if (errors.length != 0) {
     e.preventDefault();
     showErrors(errors, type);
   }

@@ -1,0 +1,10 @@
+<div class='comment-rating'>
+
+<% (1..5).each do |i| %>
+  <% if i <= rating %>  
+    <%= image_tag('red_star.gif', class: 'comment-star') %>
+  <% else %>
+    <%= image_tag('empty_star.gif', class: 'comment-star') %>
+  <% end %>
+<% end %>
+</div>

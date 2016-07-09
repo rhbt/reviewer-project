@@ -193,6 +193,17 @@ div #review-delete {
   display: none;
 }
 
+.comment-star {
+  width: 12px;
+  height: 12px;
+}
+
+.comment-rating {
+  display: inline-block;
+  margin-left: 7.5px;
+
+}
+
 .star-rating > .star-empty{
   cursor:pointer;
   width: 17px;
