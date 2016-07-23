@@ -13,9 +13,9 @@ $(".comment-container").append("<div class='row' id='comment-<%= @comment.id %>'
         "<div class='comment-rating'>" +
         <% (1..5).each do |i| %>
         <% if i <= @comment.rating %>  
-          " <img class='comment-star' src='/assets/red_star.gif'>" +
+          " <img class='comment-star' src='/assets/<%=Rails.application.assets.find_asset('red_star.gif').digest_path%>'>" +
           <% else %>
-          " <img class='comment-star' src='/assets/empty_star.gif'>" +
+          " <img class='comment-star' src='/assets/<%=Rails.application.assets.find_asset('empty_star.gif').digest_path%>'>" +
         <% end %>
         <% end %>
         "</div>" +
