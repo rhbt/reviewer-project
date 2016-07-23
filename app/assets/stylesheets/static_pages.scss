@@ -1,0 +1,36 @@
+.main-title {
+  font-size: 36px;
+  margin-top: 5px;
+}
+
+#review-search {
+  display: inline-block;
+  width: 40%;
+  height: 55px;
+  margin-top: 20px;
+  margin-right: 20px;
+  font-weight: 300 !important;
+  letter-spacing: .6px;
+  line-height: 150%;
+}
+
+.btn.btn-primary#search-button {
+  margin-top: -5px;
+  width: 35%;
+  height: 55px;
+  background-color: $light-blue;
+  letter-spacing: .6px;
+  line-height: 150%;
+  text-transform: uppercase;
+}
+
+
+.review-link {
+  margin-top: 25px;
+  font-size: 25px;
+}
+
+.static-content {
+  letter-spacing: .6px;
+  line-height: 150%;
+}

@@ -48,10 +48,13 @@ class CommentsController < ApplicationController
         
         @time_left = (last_comment - 30.seconds.ago).to_i
         
-        flash.now[:danger] = "You must wait #{@time_left} seconds before commenting again"
+        
         
         respond_to do |format|
-          format.html { redirect_to request.referer || current_user }
+          format.html { 
+            flash[:danger] = "You must wait #{@time_left} seconds before commenting again"
+            redirect_to request.referer || current_user }
+            
           format.js { render 'comment_time_error.js.erb' }
         end
         

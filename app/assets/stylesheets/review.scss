@@ -1,0 +1,93 @@
+.review-comment-header {
+    &.op-comment-header {
+      color: #428bca;;
+    }
+    margin-top: 10px;
+    font-weight: 300 !important;
+    letter-spacing: .6px;
+}
+
+.review-comment {
+    margin-bottom: 15px;
+    letter-spacing: .6px;
+    line-height: 150%;
+}
+
+#new_comment {
+  margin-top: 30px;
+  textarea {
+  letter-spacing: .6px;
+  line-height: 150%;
+  }
+  input[type=submit] {
+    margin-bottom: 10px;
+    width: 54.5%;
+    background-color: $light-blue;
+    font-weight: 300 !important;
+    letter-spacing: .6px;
+    text-transform: uppercase;
+  }
+}
+
+#new_stickied_review {
+  @extend #new_comment;
+  width: 45%;
+}
+
+div #review-delete {
+  margin-top: 5px;
+}
+
+#review-delete {
+  a {
+    margin-left: 0px;
+    font-size: 16px;
+  }
+}
+
+.star-rating > .field_with_errors {
+  display: none;
+}
+
+.star-rating > input{
+  display: none;
+}
+
+.comment-star {
+  width: 12px;
+  height: 12px;
+}
+
+.comment-rating {
+  display: inline-block;
+  margin-left: 7.5px;
+
+}
+
+.star-rating > .star-empty{
+  cursor:pointer;
+  width: 17px;
+  height: 17px;
+  background: image-url("empty_star.gif");
+}
+
+.star-rating > .star-full{
+  cursor:pointer;
+  width: 17px;
+  height: 17px;
+  background: image-url("filled_star.gif");
+}
+
+.star-rating > .star-red{
+  cursor:pointer;
+  width: 17px;
+  height: 17px;
+  background: image-url("red_star.gif");
+}
+
+.star-rating > .star-end{
+  cursor:pointer;
+  width: 17px;
+  height: 17px;
+  background: image-url("empty_star.gif");
+}
