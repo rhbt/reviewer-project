@@ -1,47 +1,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-$gray-medium-light: #eaeaea;
-$light-blue: #29f;
 
-@font-face {
-  font-family: "Montserrat";
-  src: font-url(asset-path("Montserrat-Regular.otf"));
-          font-weight: normal;  
-          font-style: normal; 
-}
 
-@font-face {
-  font-family: "Montserrat";
-  src: font-url(asset-path("Montserrat-Hairline.otf"));
-          font-weight: 100;  
-          font-style: normal; 
-}
 
-@font-face {
-  font-family: "Montserrat";
-  src: font-url(asset-path("Montserrat-Light.otf"));
-          font-weight: 300;  
-          font-style: normal; 
-}
 
-@font-face {
-  font-family: "Montserrat";
-  src: font-url(asset-path("Montserrat-UltraLight.otf"));
-          font-weight: 200;  
-          font-style: normal; 
-}
 
-body * {
-  font-family: "Montserrat", Helvetica, Arial, sans-serif !important;
-  font-weight: 200 !important; 
-}
-
-/* root page */
-.main-title {
-  font-size: 36px;
-  margin-top: 5px;
-}
 
 #review-search {
   display: inline-block;
@@ -232,46 +196,6 @@ div #review-delete {
   background: image-url("empty_star.gif");
 }
 
-
-/* header */
-
-#logo {
-  font-size: 18px;
-  font-weight: 300;
-  text-transform: uppercase;
-  color: black;
-}
-
-header.nav-item {
-  text-transform: uppercase;
-  font-size: 13px;
-}
-
-/* footer */
-
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid $gray-medium-light;
-  color: $gray-light;
-  a {
-    color: $gray;
-    &:hover {
-      color: $gray-darker;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
-}
 
 /* debug */
 

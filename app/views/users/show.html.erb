@@ -9,10 +9,10 @@
     <h2 class="profile-subheader">Reviews you've submitted</h2>
      <div class="review-list">
       <% @user.reviews.each do |r| %>
-        <p>
+        <p id="review-<%= r.id %>">
           <%= link_to "#{r.url}", r %> 
           <%= render "shared/static_rating", rating: calculate_rating(r) %>
-          <%= link_to "Delete", r, class: "button-general", method: :delete,
+          <%= link_to "Delete", r, class: "button-general", method: :delete, remote: :true,
         data: { confirm: "You sure?" } %></p>
       <% end %>
     </div>

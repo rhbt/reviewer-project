@@ -50,8 +50,16 @@ class ReviewsController < ApplicationController
 
   def destroy
     @review.destroy
-    flash[:success] = "Review delete successfully"
-    redirect_to root_url
+    
+    
+    respond_to do |format|
+      format.html { 
+        flash[:success] = "Review delete successfully"
+        redirect_to request.referer || root_url }
+        
+      format.js { render 'destroy_review.js.erb'}
+    end
+    
   end
 
     def review_params

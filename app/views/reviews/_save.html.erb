@@ -1,10 +1,10 @@
 <% if logged_in? %>
   <% if current_user.stickied_reviews.find_by(review_id: params[:id]).nil? &&
   !review_author?(current_user, @review) %>
-    <div class="row">
+    <div class="row" id="save-review-button">
       <div class="col-md-offset-2 col-md-10 text-left comment-form">
             
-            <%= form_for(current_user.stickied_reviews.build) do |f| %>
+            <%= form_for(current_user.stickied_reviews.build, remote: :true) do |f| %>
               <%= hidden_field_tag :user_id, current_user.id %>
               <%= hidden_field_tag :review_id, params[:id]%>
               <%= f.submit "Save this review", class: "btn btn-primary" %>
