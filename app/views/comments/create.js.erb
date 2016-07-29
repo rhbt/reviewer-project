@@ -1,6 +1,6 @@
 $(".comment-container").append("<div class='row' id='comment-<%= @comment.id %>'>" +
     "<div class='col-md-offset-2 col-md-8 text-left'>" +
-      "<div class='review-comment-header" + 
+      "<div class='review-comment-header " + 
       
         <% if @comment.user.id == @review.user_id %>
           "op-comment-header" +

@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       
       if user.activated?
         log_in user
-        params[:session][:remember_me] == '1' ? remember(user) : forget(user)
+        params[:session][:remember_me] == "1" ? remember(user) : forget(user)
         redirect_to user
       else
         message  = "Account not activated. "
@@ -20,8 +20,8 @@ class SessionsController < ApplicationController
       end
       
     else
-      flash.now[:danger] = 'Invalid email/password combination'
-      render 'new'
+      flash.now[:danger] = "Invalid email/password combination"
+      render "new"
     end
   end
   

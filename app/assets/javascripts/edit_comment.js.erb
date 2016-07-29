@@ -1,0 +1,42 @@
+$(document).on('ready page:load', function() { 
+  $(".edit-link").on("click", function(e) {
+    e.preventDefault();
+    
+    var textNode = $(this).parent().prev().prev();
+    var text = textNode.contents().get(0).nodeValue.trim();
+
+    var editDiv = $(this).parent();
+    $(this).css("display", "none");
+    
+    
+    editDiv.append("<a href='#', class='save-link'>Save</a>")
+    .append("<a href='#', class='cancel-link'>Cancel</a>");
+    
+    textNode.text("")
+    .append("<textarea rows='6' cols='110'>" + text  +"</textarea>");
+    
+    $(".save-link").on("click", function(e) {
+      e.preventDefault();
+      
+      var newText = textNode.find("textarea").val();
+      editDiv.prev().find("textarea").empty().text(newText);
+      editDiv.find("a").slice(2, 4).remove();
+      textNode.empty().append(newText);
+      editDiv.prev("form").submit();
+      
+    })
+    
+    $(".cancel-link").on("click", function(e) {
+      e.preventDefault();
+
+      editDiv.find("a").slice(2, 4).remove();
+      editDiv.find("a").slice(1,2).css("display", "inline");
+
+      textNode.empty().append(text);
+      
+    })
+ 
+  })
+  
+})
+
