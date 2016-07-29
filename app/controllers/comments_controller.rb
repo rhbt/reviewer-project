@@ -24,6 +24,28 @@ class CommentsController < ApplicationController
 
   end
   
+  def update
+    @comment = current_user.comments.find(params[:id])
+    
+    if @comment.update_attributes(comment_params)
+      respond_to do |format|
+        format.html { 
+          flash[:success] = "Comment updated!"
+          redirect_to request.referer }
+        format.js { render "update.js.erb"}
+      end
+      
+    else
+      respond_to do |format|
+        format.html { 
+          flash[:error] = @comment.errors.full_messages
+          redirect_to request.referer }
+        format.js { render "update.js.erb" }
+      
+      end
+    end
+  end
+  
   def destroy
     @review = Review.find_by(id: @comment.review_id)
     @review.update_attributes(total_ratings: @review.total_ratings - 1, rating: @review.rating - @comment.rating)
@@ -67,4 +89,5 @@ class CommentsController < ApplicationController
     end   
 
 end
+  
 

@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   resources :users
   resources :reviews, only: [:index, :new, :create, :destroy, :show]
   resources :stickied_reviews, only: [:create, :destroy]
-  resources :comments, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy, :update]
   
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]

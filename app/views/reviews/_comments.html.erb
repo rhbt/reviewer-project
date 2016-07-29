@@ -17,13 +17,21 @@
         
       <div class="review-comment">
         <%= c.content %>
-          <% if current_user?(c.user) %>
-            <div class="comment-delete">
-              <%= link_to "Delete", c, method: :delete, remote: :true,
-              data: { confirm: "You sure?" } %>
-            </div>
-          <% end %>
+        
       </div>
+
+        <%= form_for(c, html: { class: "edit-comment-form", remote: :true }) do |f| %>
+          <%= f.text_area :content, rows:"6", cols: "110" %>
+        <% end %>
+
+      <% if current_user?(c.user) %>
+        <div class="comment-delete">
+          <%= link_to "Delete", c, method: :delete, remote: :true,
+          data: { confirm: "You sure?" } %>
+          <%= link_to "Edit", "#", class: "edit-link"%>
+
+        </div>
+      <% end %>
         
     </div>
   </div>
