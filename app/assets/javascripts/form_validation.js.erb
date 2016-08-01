@@ -1,33 +1,38 @@
 $(document).on('ready page:load', function() {
    $("#new_review").on("submit", function(e) {
-     remove_previous();
+     removePrevious();
      validateContent(e, "review");
    })
    
   $("#new_comment").on("submit", function(e) {
-    remove_previous()
+    removePrevious();
     validateContent(e, "comment");
   })
    
    $("#new_user").on("submit", function(e) {
-     remove_previous()
+     removePrevious();
      validateSignup(e, "user");
    }) 
    
 })
 
 // Helper functions
-function remove_previous() {
-  if ($("#error_explanation").length) { $("#error_explanation").remove(); }
+
+function removePrevious() {
+  if ($("#error_explanation").length) {$("#error_explanation").remove();}
 }
 
 function isEmpty(s) {
   return s.length == 0;
 }
 
-function showErrors(errors, type) {
+function showErrors(errors, type, edit_id = false) {
+  
+  edit_id ? 
+  $("#comment-" + edit_id).prepend("<div class='col-md-8 col-md-offset-2' id='error_explanation'></div>") : 
   $("#new_" + type).prepend("<div id='error_explanation'></div>");
-  $("#error_explanation").prepend("<div class='alert alert-danger'> This form contains " +
+
+  $("#error_explanation").prepend("<br><div class='alert alert-danger'> This form contains " +
   errors.length + " errors" + "</div>");
   
   $("#error_explanation").append("<ul></ul>");
@@ -111,14 +116,15 @@ function validateSignup(e, type) {
 function validateContent(e, type) {
   var errors = [];
 
+
+
   var rating = $("input:radio[name ='" + type + "[rating]']:checked").val();
-  var content = $("#" + type + "_content").val();
-  
   var ratingErrorExist = ratingError(rating);
-  var contentErrorExist = contentError(content);
-  
-    
   if (ratingErrorExist) {errors.push(ratingErrorExist);}
+
+
+  var content = $("#" + type + "_content").val().trim();
+  var contentErrorExist = contentError(content);
   if (contentErrorExist) {errors.push(contentErrorExist);}
   
 
@@ -131,4 +137,5 @@ function validateContent(e, type) {
     e.preventDefault();
     showErrors(errors, type);
   }
+
 }

@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :correct_user, only: [:destroy]
+  before_action :correct_user, only: [:destroy, :update]
   before_action :able_to_comment, only: [:create]
   
   def create 
@@ -25,7 +25,6 @@ class CommentsController < ApplicationController
   end
   
   def update
-    @comment = current_user.comments.find(params[:id])
     
     if @comment.update_attributes(comment_params)
       respond_to do |format|
@@ -69,7 +68,6 @@ class CommentsController < ApplicationController
       if last_comment  > 30.seconds.ago
         
         @time_left = (last_comment - 30.seconds.ago).to_i
-        
         
         
         respond_to do |format|

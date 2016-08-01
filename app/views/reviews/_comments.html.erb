@@ -21,7 +21,7 @@
       </div>
 
         <%= form_for(c, html: { class: "edit-comment-form", remote: :true }) do |f| %>
-          <%= f.text_area :content, rows:"6", cols: "110" %>
+          <%= f.text_area :content, id: nil, rows:"6", cols: "110" %>
         <% end %>
 
       <% if current_user?(c.user) %>

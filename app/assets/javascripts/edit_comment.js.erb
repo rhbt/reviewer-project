@@ -1,14 +1,26 @@
+function getCommentID(cssID) {
+  return cssID.slice(cssID.lastIndexOf("-")+1);
+}
+
+function edit_errors(content) {
+  errors = [];
+  if (content.length == 0) {errors.push("Your review cannot be blank");} 
+  else if (content.length < 10) {errors.push("Your review must be at least 10 characters");}
+  return errors;
+}
+
 $(document).on('ready page:load', function() { 
-  $(".edit-link").on("click", function(e) {
-    e.preventDefault();
+  $(document).on("click", ".edit-link", function(e) {
     
+    e.preventDefault();
+
     var textNode = $(this).parent().prev().prev();
     var text = textNode.contents().get(0).nodeValue.trim();
 
     var editDiv = $(this).parent();
     $(this).css("display", "none");
     
-    
+
     editDiv.append("<a href='#', class='save-link'>Save</a>")
     .append("<a href='#', class='cancel-link'>Cancel</a>");
     
@@ -18,11 +30,21 @@ $(document).on('ready page:load', function() {
     $(".save-link").on("click", function(e) {
       e.preventDefault();
       
-      var newText = textNode.find("textarea").val();
-      editDiv.prev().find("textarea").empty().text(newText);
-      editDiv.find("a").slice(2, 4).remove();
-      textNode.empty().append(newText);
-      editDiv.prev("form").submit();
+      var newText = textNode.find("textarea").val().trim();
+      var errors = edit_errors(newText);
+      removePrevious();
+      if (errors.length == 0) {
+        editDiv.prev().find("textarea").empty().text(newText);
+        editDiv.find("a").slice(2, 4).remove();
+        textNode.empty().append(newText);
+        editDiv.prev("form").submit();
+      }
+      else {
+        var cssCommentID = $(this).parents().eq(2).attr("id");
+        var commentID = getCommentID(cssCommentID);
+        showErrors(errors, "", commentID);
+      }
+      
       
     })
     
@@ -33,10 +55,10 @@ $(document).on('ready page:load', function() {
       editDiv.find("a").slice(1,2).css("display", "inline");
 
       textNode.empty().append(text);
+      removePrevious();
       
     })
  
   })
   
 })
-
