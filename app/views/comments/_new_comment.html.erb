@@ -1,0 +1,40 @@
+<div class='row' id='comment-<%= @comment.id %>'>
+  <div class='col-md-offset-2 col-md-8 text-left'>
+    <div class='review-comment-header 
+      
+      <% if @comment.user.id == @review.user_id %>
+        op-comment-header
+      <% end %>
+    '>
+      <%= @comment.user.username %> -
+      <%= time_ago_in_words(@comment.created_at) %> ago
+        
+      <div class='comment-rating'>
+        <% (1..5).each do |i| %>
+        <% if i <= @comment.rating %>  
+          <img class='comment-star' src='/assets/<%=Rails.application.assets.find_asset('red_star.gif').digest_path%>'>
+          <% else %>
+          <img class='comment-star' src='/assets/<%=Rails.application.assets.find_asset('empty_star.gif').digest_path%>'>
+        <% end %>
+        <% end %>
+      </div>
+    </div>
+        
+      <div class='review-comment'>
+        <%= @comment.content %>
+      </div>
+
+      <%= form_for(@comment, html: { class: 'edit-comment-form', remote: :true }) do |f| %>
+        <%= f.text_area :content, id: nil, rows:'6', cols: '110' %>
+      <% end %>
+      
+
+      <% if current_user?(@comment.user) %>
+        <div class='comment-delete'>
+          <a data-confirm='You sure?' rel='nofollow' data-method='delete' data-remote='true' href='/comments/<%=@comment.id%>'>Delete</a>
+          <a class='edit-link' href='#' style='display: inline;'>Edit</a>
+        </div>
+      <% end %>
+  
+  </div>
+</div>
