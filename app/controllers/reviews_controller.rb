@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   before_action :logged_in_user, only: [:new, :create, :destroy]
   before_action :able_to_review, only: [:create]
   before_action :correct_user, only: [:destroy]
-
+  
   def index
     review = Review.find_by(url: format_url(params[:search]))
     if review
@@ -14,11 +14,17 @@ class ReviewsController < ApplicationController
   end
   
   def show
-    
+
     @review = Review.find(params[:id])
     if logged_in?
       @comment = current_user.comments.build
     end
+    
+    respond_to do |format|
+      format.html {}
+      format.json { render json: [@review, comments: @review.comments] }
+    end
+
   end
   
   def new
