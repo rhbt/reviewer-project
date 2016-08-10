@@ -1,11 +1,9 @@
-  <% if current_user?(@review.user) %>
-    <div class="row">
-      <div class="col-md-offset-2 col-md-10 text-left", id="review-delete" >
+<% if current_user?(@review.user) %>
+  <div id="review-delete">
         
-        <%= link_to "Delete this review", @review, method: :delete, 
-        class: "button-general", 
-        data: { confirm: "You sure?" } %>
+    <%= link_to "Delete this review", @review, method: :delete, 
+    class: "button-general", 
+    data: { confirm: "You sure?" } %>
         
-      </div>
-    </div>
-  <% end %>
+  </div>
+<% end %>

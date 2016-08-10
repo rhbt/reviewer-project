@@ -1,42 +1,39 @@
 <div class="row">
-  <div class="col-md-12 text-center">
-    <h1 class="main-title"><%= link_to @review.url, 
-    "http://#{@review.url}", target: "_blank" %>
-    <%= render "shared/static_rating", rating: calculate_rating(@review) %>
-    <%=render "delete" %>
+  <div class="col-md-offset-2 col-md-8 text-left">
+    <h1 class="main-title">
+      <%= @review.title %>
     </h1>
-    <%= render "save" %>
   </div>
 </div>
 
+
+<%= render "review_info" %>
+
 <div class="comment-container">
-  <%= render "content" %>
-        
   <%= render "comments" %>
-    
-  <% if logged_in? %>
 </div>
 
-    <div class="row"> 
-      <div class="col-md-offset-2 col-md-8 text-left">
 
-        <%= form_for(@comment, html: { class: "form-general" }) do |f| %>
+<% if logged_in? %>
+  <div class="row"> 
+    <div class="col-md-offset-2 col-md-8 text-left">
+
+      <%= form_for(@comment, html: { class: "form-general" }) do |f| %>
         
-          <%= render "shared/error_messages", object: f.object %>
+        <%= render "shared/error_messages", object: f.object %>
           
-          <%= f.hidden_field :review_id, value: params[:id] %>
-          <%= f.label :rating, "Rate how everything went" %>
-          <div class="star-rating">
-            <%= render "shared/star_rating", f: f %>
-          </div>
-          <%= f.text_area :content, placeholder: "Write your own review or comment", 
-          rows: "10", cols: "70" %>
-          <%= f.submit "Submit comment", class: "btn btn-primary" %>
+        <%= f.hidden_field :review_id, value: params[:id] %>
+        <%= f.label :rating, "Rate how everything went" %>
+        <div class="star-rating">
+          <%= render "shared/star_rating", f: f %>
+        </div>
+        <%= f.text_area :content, placeholder: "Write your own review or comment", 
+        rows: "10", cols: "70" %>
+        <%= f.submit "Submit comment", class: "btn btn-primary" %>
                 
-        <% end %>
-      </div>
+      <% end %>
     </div>
-
+  </div>
 <% end %>         
 
 

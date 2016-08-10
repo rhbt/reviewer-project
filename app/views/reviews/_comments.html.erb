@@ -1,22 +1,39 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8">
+    <h2>Comments</h2>
+  </div>
+</div>
+
 <% @review.comments.each do |c| %>
-  <div class="row" id="comment-<%=c.id%>">
-    <div class="col-md-offset-2 col-md-8 text-left">
-      
-      <div class="review-comment-header 
+  <div class="row comment-holder" id="comment-<%=c.id%>">
+    
+    <div class="col-md-offset-2 col-md-2 text-left">
+       <div class="review-comment-header 
         <% if c.user.id == @review.user_id %>
           op-comment-header
         <% end %>
-      ">
-        <%= c.user.username %> - 
-        <%= time_ago_in_words(c.created_at) %> ago 
-        <%if c.rating != nil %>
-          <%= render "shared/comment_rating", rating: c.rating %>
-        <% end %>
+        ">
+        <%= c.user.username %> <br>
+        <%= c.user.comments.count %> comments <br>
+        User since <%= c.user.created_at.strftime("%b %Y") %> 
+        
         
       </div>
+    </div>
+    
+    <div class="col-md-6 text-left">
+      
+      <div>
         
-      <div class="review-comment">
-        <%= c.content %>
+        <%if c.rating != nil %>
+          <%= render "shared/comment_rating", rating: c.rating %> - 
+        <% end %>
+        
+        <%= time_ago_in_words(c.created_at) %> ago
+        
+        <div class="review-comment">
+          <%= c.content %>
+        </div>
         
       </div>
 

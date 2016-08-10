@@ -1,0 +1,38 @@
+<div class="row">
+  <div class="col-md-offset-2 col-md-8 text-left">
+    
+    <div class="row review-info-section">
+      <div class="col-md-4 review-info-item">
+        <%= render "shared/static_rating", rating: calculate_rating(@review) %> <br>
+        <span class="review-info-text"><%= @review.total_ratings %> ratings</span>
+      </div>
+      
+      <div class="col-md-4 review-info-item">
+        <h2 class="review-info-header">Item being reviewed</h2>
+        <span class="review-info-text"><%= @review.item %></span>
+      </div>
+      
+      <div class="col-md-4 review-info-item">
+        <h2 class="review-info-header">
+          <%= link_to "Link to classified ad", "http://"+@review.url, target: "_blank" %>
+        </h2>
+      </div>
+      
+
+    </div>
+    
+    <div class="row review-info-section">
+      <div class="col-md-12">
+        <%= render "content" %>
+      </div>
+    </div>
+    
+    <div class="row review-info-section">
+      <div class="col-md-12">
+        <%= render "delete" %>
+        <%= render "save" %>
+      </div>
+    </div>
+    
+  </div>
+</div>
