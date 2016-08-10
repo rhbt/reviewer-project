@@ -14,7 +14,7 @@ $(document).on('ready page:load', function() {
     
     e.preventDefault();
 
-    var textNode = $(this).parent().prev().prev();
+    var textNode = $(this).parent().prev().prev().find(".review-comment");
     var text = textNode.contents().get(0).nodeValue.trim();
 
     var editDiv = $(this).parent();

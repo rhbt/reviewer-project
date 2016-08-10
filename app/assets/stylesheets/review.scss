@@ -1,16 +1,43 @@
+
+.review-info-header {
+  font-weight: 300 !important;
+  font-size: 20px;
+  margin: 0px;
+}
+
+.review-info-text{
+  font-size: 17px;
+}
+
+.review-info-item {
+  margin-top: 15px;
+}
+
+.review-info-section {
+  margin-top: 15px;
+}
+
+.comment-holder {
+  margin-bottom: 20px;
+}
+
 .review-comment-header {
     &.op-comment-header {
       color: #428bca;;
     }
-    margin-top: 10px;
     font-weight: 300 !important;
     letter-spacing: .6px;
 }
 
+.comment-container {
+  margin-top: 15px;
+}
+
+
 .review-comment {
-    margin-bottom: 5px;
-    letter-spacing: .6px;
-    line-height: 150%;
+  margin-bottom: 5px;
+  letter-spacing: .6px;
+  line-height: 150%;
 }
 
 #new_comment {
@@ -31,7 +58,8 @@
 
 #new_stickied_review {
   @extend #new_comment;
-  width: 45%;
+  margin-top: 0px;
+  width: 350px;
 }
 
 div #review-delete {
@@ -60,8 +88,6 @@ div #review-delete {
 
 .comment-rating {
   display: inline-block;
-  margin-left: 7.5px;
-
 }
 
 .star-rating > .star-empty{

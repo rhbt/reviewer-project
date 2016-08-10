@@ -1,14 +1,20 @@
 <div class='row' id='comment-<%= @comment.id %>'>
-  <div class='col-md-offset-2 col-md-8 text-left'>
+  <div class='col-md-offset-2 col-md-2 text-left'>
     <div class='review-comment-header 
       
       <% if @comment.user.id == @review.user_id %>
         op-comment-header
       <% end %>
     '>
-      <%= @comment.user.username %> -
-      <%= time_ago_in_words(@comment.created_at) %> ago
+      <%= @comment.user.username %> <br>
+      <%= @comment.user.comments.count %> comments <br>
+      User since <%= @comment.user.created_at.strftime("%b %Y") %> 
+      
+    </div>
+  </div>
         
+    <div class="col-md-6 text-left">
+      
       <div class='comment-rating'>
         <% (1..5).each do |i| %>
         <% if i <= @comment.rating %>  
@@ -18,8 +24,9 @@
         <% end %>
         <% end %>
       </div>
-    </div>
-        
+      
+      - <%= time_ago_in_words(@comment.created_at) %> ago
+      
       <div class='review-comment'>
         <%= @comment.content %>
       </div>
@@ -35,6 +42,6 @@
           <a class='edit-link' href='#' style='display: inline;'>Edit</a>
         </div>
       <% end %>
-  
-  </div>
+    </div>
+
 </div>
