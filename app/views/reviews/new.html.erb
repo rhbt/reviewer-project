@@ -13,7 +13,7 @@
       
       <%= f.label :title, "Title" %>
       <%= f.text_field :title, class: "form-control" %>
-      
+
       <%= f.label :item, "Item" %>
       <%= f.text_field :item, class: "form-control", placeholder: "What is the item you're reviewing?" %>
       
@@ -28,7 +28,7 @@
         
       </div>
       <%= f.label :content, "Review" %>
-      <%= f.text_area :content, placeholder: "Enter your review here", rows:"20", cols: "76" %>
+      <%= f.text_area :content, class: "form-control", placeholder: "Enter your review here", rows:"20", cols: "76" %>
       
       <%= f.submit "Submit review", class: "btn btn-primary" %>
     
