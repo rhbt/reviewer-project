@@ -61,7 +61,7 @@ class ReviewsController < ApplicationController
     respond_to do |format|
       format.html { 
         flash[:success] = "Review delete successfully"
-        redirect_to request.referer || root_url }
+        redirect_to root_url }
         
       format.js { render 'destroy_review.js.erb'}
     end
@@ -69,7 +69,7 @@ class ReviewsController < ApplicationController
   end
 
     def review_params
-      params.require(:review).permit(:url, :content, :rating)
+      params.require(:review).permit(:title, :item, :url, :content, :rating)
     end
 
     def format_url(url)

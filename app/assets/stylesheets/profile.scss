@@ -2,13 +2,26 @@
   font-size: 26px;
 }
 
-.review-list {
-  div {
-    display: inline-block;
-    margin-right: 20px;
-    letter-spacing: .6px;
-  }
-  form {
-    display: inline-block;
-  }
+.edit_stickied_review {
+  display: inline-block;
+}
+
+.saved-review-header {
+  display: inline-block;
+  margin: 0px 15px 0px 0px;
+  font-weight: 300 !important;
+  font-size: 18px;
+}
+
+.saved-review {
+  margin-bottom: 15px;  
+}
+
+.static-rating > img {
+  vertical-align: -1px;
+}
+
+.button-link {
+  border: none;
+  padding: 0px;
 }

@@ -17,6 +17,29 @@ header.nav-item {
   
 }
 
+.navbar-brand {
+    float: none;
+    margin-top: 10px;
+    padding: 5px;
+}
+.navbar-center {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    text-align: center;
+    margin: auto;
+    height:100%;
+}
+
+.navbar {
+   background-color: transparent;
+   background: transparent;
+   border-color: transparent;
+}
+
+.navbar li { color: #000 } 
+
 /* footer */
 footer {
   margin-top: 45px;

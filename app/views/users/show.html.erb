@@ -4,28 +4,28 @@
   </div>
 </div>
 
-<div class="row">
-  <div class="col-md-12">
-    <h2 class="profile-subheader">Reviews you've submitted</h2>
-     <div class="review-list">
-      <% @user.reviews.each do |r| %>
-        <p id="review-<%= r.id %>">
-          <%= link_to "#{r.url}", r %> 
+
+<h2 class="profile-subheader">Reviews you've submitted</h2>
+  <% @user.reviews.each do |r| %>
+    <div class="row saved-review" id="review-<%= r.id %>">
+      <div class="col-md-12">
+         <h3 class="saved-review-header"><%= link_to "#{r.title}", r %></h3>
           <%= render "shared/static_rating", rating: calculate_rating(r) %>
-          <%= link_to "Delete", r, class: "button-general", method: :delete, remote: :true,
-        data: { confirm: "You sure?" } %></p>
-      <% end %>
+          <br>
+          <%= link_to "Delete", r, method: :delete, remote: :true,
+        data: { confirm: "You sure?" } %>
+      </div>
     </div>
-  </div>
-</div>
+ <% end %>
+
 
 <hr>
 
 <div class="row">
   <div class="col-md-12">
     <h2 class="profile-subheader">Saved Reviews</h2>
-      <div class="review-list">
+
         <%= render "saved_reviews" %>
-      </div>
+
   </div>
 </div>

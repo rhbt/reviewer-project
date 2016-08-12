@@ -10,6 +10,8 @@ class Review < ActiveRecord::Base
   validate :url, :valid_url
   validates :content, presence: true, length: { minimum: 10 }
   validates :rating, presence: true, inclusion: 1..5
+
+  
   
 private
 #downcase
