@@ -1,23 +1,55 @@
 .main-title {
-  font-size: 36px;
+  font-size: 45px;
   margin-top: 7.5%;
   margin-bottom: 2.5%;
 }
 
 #review-search {
-  display: inline-block;
+  @media (min-width: 992px) {
+    width: 65%;
+    margin-left: 35%;
+  }
+  
+  @media (min-width: 427px) and (max-width: 991px) {
+    width: 65%;
+    margin: 0 auto;
+  }
+  
+  @media (max-width: 426px) {
+    width: 75%;
+    margin: 0 auto;
+  }
+  
   width: 40%;
   height: 55px;
-  margin-top: 20px;
   margin-right: 20px;
   font-weight: 300 !important;
   letter-spacing: .6px;
   line-height: 150%;
+
 }
 
+  
 .btn.btn-primary#search-button {
-  margin-top: -5px;
-  width: 35%;
+  display: block;
+  @media (min-width: 992px) {
+    width: 55%;
+  }
+  
+  @media (min-width: 427px) and (max-width: 991px) {
+    width: 55%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 426px) {
+    width: 75%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
   height: 55px;
   background-color: $light-blue;
   letter-spacing: .6px;
@@ -37,3 +69,19 @@
   letter-spacing: .6px;
   line-height: 150%;
 }
+
+.description-container {
+  margin-top: 3.5%;
+  color: $light-black;
+  hr {
+    width: 30%;
+  }
+  
+  p {
+    font-size: 15px;
+    letter-spacing: .3px;
+    font-weight: 300 !important;
+  }
+  
+}
+

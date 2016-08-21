@@ -1,7 +1,25 @@
+html, body {
+  height: 100%;
+}
+
+
+.container-main {
+  min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -40px;
+}
+
 body * {
   font-family: "Montserrat", Helvetica, Arial, sans-serif !important;
   font-weight: 200 !important; 
 }
+
+input[placeholder] {text-overflow:ellipsis;}
+input:-moz-placeholder {text-overflow:ellipsis;}
+input:-moz-placeholder {text-overflow:ellipsis;}
+input:-ms-input-placeholder {text-overflow:ellipsis;}
+
 
 /* header */
 #logo {
@@ -41,9 +59,13 @@ header.nav-item {
 .navbar li { color: #000 } 
 
 /* footer */
+.push {
+  height: 90px;
+}
+
+
 footer {
-  margin-top: 45px;
-  padding-top: 5px;
+  height: 40px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
   a {
@@ -53,14 +75,15 @@ footer {
     }
   }
   small {
-    float: left;
+    margin-left: 2.5%;
   }
   ul {
     float: right;
     list-style: none;
+    margin-right: 2.5%;
     li {
       float: left;
-      margin-left: 15px;
+      margin-left: 20px;
     }
   }
 }
