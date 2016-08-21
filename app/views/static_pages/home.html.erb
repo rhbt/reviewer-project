@@ -5,10 +5,12 @@
 </div>
 
 <div class="row">
-  <div class=" col-md-offset-2 col-md-10">
-    <%= form_tag reviews_path, method: "get" do %>
+  <div class="col-md-6">
+    <%= form_tag reviews_path, id: "review-search-form", method: "get" do %>
       <%= text_field_tag :search, "", class: "form-control", id: "review-search", placeholder: "Enter a URL of a classified ad" %>
-      <%= submit_tag "Search for review", name: nil, class: "btn btn-primary", id: "search-button" %>
+  </div>
+  <div class="col-md-6">
+      <%= submit_tag "Search for review", name: nil, form: "review-search-form", class: "btn btn-primary", id: "search-button" %>
     <% end %>
   </div>
 </div>
@@ -16,7 +18,7 @@
 <% if logged_in? %>
 
   <div class="row">
-    <div class="col-md-offset-3 col-md-6">
+    <div class="col-md-offset-3 col-md-6 text-center">
       <h2 class="review-link">Write a review for a classified ad <%= link_to "here!", new_review_path %></h2>
     </div>
   </div>
@@ -24,13 +26,44 @@
 <% else %>
 
   <div class="row">
-    <div class="col-md-offset-3 col-md-6">
+    <div class="col-md-offset-3 col-md-6 text-center">
       <h2 class="review-link">Want to write a review for a classified ad? <%= link_to "Create an account", new_user_path %> 
       or <%= link_to "sign in", login_path%></h2>
     </div>
   </div>
   
 <% end %>
+
+<div class="row description-container">
+  <div class="col-md-4 text-center test">
+    <%= image_tag("glass.svg", alt: "hands", width: "60px", height: "60px") %>
+    <h3>
+      Search for Reviews
+    </h3>
+    <hr>
+    <p>Find what others are saying about online ads you're interested in.</p>
+  </div>
+  
+  <div class="col-md-4 text-center test">
+    <%= image_tag("pen.svg", alt: "hands", width: "60px", height: "60px") %>
+    <h3>
+      Review Classified Ads
+    </h3>
+    <hr>
+    <p>Write reviews about classifieds ads you've checked out.</p>
+  </div>
+  
+  <div class="col-md-4 text-center test">
+    <%= image_tag("hands.svg", alt: "hands", width: "60px", height: "60px") %>
+    <h3>
+      Make Deals Confidently
+    </h3>
+    <hr>
+    <p>Save time checking out online ads. Be confident you're getting what's 
+    advertised.
+    </p>
+  </div>
+</div>
 
 
 

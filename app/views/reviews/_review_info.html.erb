@@ -4,7 +4,13 @@
     <div class="row review-info-section">
       <div class="col-md-4 review-info-item">
         <%= render "shared/static_rating", rating: calculate_rating(@review) %> <br>
-        <span class="review-info-text"><%= @review.total_ratings %> ratings</span>
+        <span class="review-info-text"><%= @review.total_ratings %> 
+          <% if @review.total_ratings > 1 %>
+          ratings
+          <% else %>
+          rating
+          <% end %>
+          </span>
       </div>
       
       <div class="col-md-4 review-info-item">
