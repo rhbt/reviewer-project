@@ -49,6 +49,7 @@ group :development do
 end
 
 group :production do
+  gem 'dalli'
   gem 'pg', '0.18.2'
   gem 'rails_12factor', '0.0.2'
   gem 'puma',           '3.1.0'

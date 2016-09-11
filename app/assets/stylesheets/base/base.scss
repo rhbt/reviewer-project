@@ -2,17 +2,16 @@ html, body {
   height: 100%;
 }
 
-
-.container-main {
-  min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    margin: 0 auto -40px;
-}
-
 body * {
   font-family: "Montserrat", Helvetica, Arial, sans-serif !important;
   font-weight: 200 !important; 
+}
+
+.container-main {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -40px;
 }
 
 input[placeholder] {text-overflow:ellipsis;}
@@ -32,7 +31,6 @@ input:-ms-input-placeholder {text-overflow:ellipsis;}
 header.nav-item {
   text-transform: uppercase;
   font-size: 13px;
-  
 }
 
 .navbar-brand {
@@ -40,6 +38,7 @@ header.nav-item {
     margin-top: 10px;
     padding: 5px;
 }
+
 .navbar-center {
     position: absolute;
     width: 100%;
@@ -59,10 +58,6 @@ header.nav-item {
 .navbar li { color: #000 } 
 
 /* footer */
-.push {
-  height: 90px;
-}
-
 
 footer {
   height: 40px;
@@ -86,4 +81,8 @@ footer {
       margin-left: 20px;
     }
   }
+}
+
+.push {
+  height: 90px;
 }

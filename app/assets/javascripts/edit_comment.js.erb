@@ -1,14 +1,3 @@
-function getCommentID(cssID) {
-  return cssID.slice(cssID.lastIndexOf("-")+1);
-}
-
-function edit_errors(content) {
-  errors = [];
-  if (content.length == 0) {errors.push("Your review cannot be blank");} 
-  else if (content.length < 10) {errors.push("Your review must be at least 10 characters");}
-  return errors;
-}
-
 $(document).on('ready page:load', function() { 
   $(document).on("click", ".edit-link", function(e) {
     
@@ -31,8 +20,8 @@ $(document).on('ready page:load', function() {
       e.preventDefault();
       
       var newText = textNode.find("textarea").val().trim();
-      var errors = edit_errors(newText);
-      removePrevious();
+      var errors = editCommentModule.edit_errors(newText);
+      formValidationModule.removePrevious();
       if (errors.length == 0) {
         editDiv.prev().find("textarea").empty().text(newText);
         editDiv.find("a").slice(2, 4).remove();
@@ -41,7 +30,7 @@ $(document).on('ready page:load', function() {
       }
       else {
         var cssCommentID = $(this).parents().eq(2).attr("id");
-        var commentID = getCommentID(cssCommentID);
+        var commentID = editCommentModule.getCommentID(cssCommentID);
         showErrors(errors, "", commentID);
       }
       
@@ -55,7 +44,7 @@ $(document).on('ready page:load', function() {
       editDiv.find("a").slice(1,2).css("display", "inline");
 
       textNode.empty().append(text);
-      removePrevious();
+      formValidationModule.removePrevious();
       
     })
  
