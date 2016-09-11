@@ -1,6 +1,6 @@
 $(document).ready(function() {
   $(document).on("mouseenter", ".star-empty", function() { 
-    var pos = parseInt($(this).attr("id")[0]);
+    let pos = parseInt($(this).attr("id")[0]);
     
       for (i = pos; i > 0 ; i--) {
         $("#"+i.toString()+"-star").attr("class", "star-full");
@@ -14,7 +14,7 @@ $(document).ready(function() {
        
   }).on("click", ".star-full, .star-red, .star-end", function() {
     
-    var pos = parseInt($(this).attr("id")[0]);
+    let pos = parseInt($(this).attr("id")[0]);
       for (i = pos; i > 0 ; i--) {
         $("#"+i.toString()+"-star").attr("class", "star-red");
       }
@@ -24,3 +24,5 @@ $(document).ready(function() {
       }
   });
 });
+
+

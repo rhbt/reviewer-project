@@ -5,6 +5,7 @@
 </div>
 
 <% @review.comments.each do |c| %>
+<% cache c do %>
   <div class="row comment-holder" id="comment-<%=c.id%>">
     
     <div class="col-md-offset-2 col-md-2 text-left">
@@ -52,4 +53,5 @@
         
     </div>
   </div>
+<% end %>
 <% end %>
