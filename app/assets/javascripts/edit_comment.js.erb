@@ -4,8 +4,8 @@ $(document).on('ready page:load', function() {
     e.preventDefault();
 
     var textNode = $(this).parent().prev().prev().find(".review-comment");
+    console.log(textNode.contents());
     var text = textNode.contents().get(0).nodeValue.trim();
-
     var editDiv = $(this).parent();
     $(this).css("display", "none");
     

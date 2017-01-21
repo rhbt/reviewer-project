@@ -30,7 +30,8 @@
       <div class='review-comment'>
         <%= @comment.content %>
       </div>
-
+      
+      
       <%= form_for(@comment, html: { class: 'edit-comment-form', remote: :true }) do |f| %>
         <%= f.text_area :content, id: nil, rows:'6', cols: '110' %>
       <% end %>
@@ -39,7 +40,7 @@
       <% if current_user?(@comment.user) %>
         <div class='comment-delete'>
           <a data-confirm='You sure?' rel='nofollow' data-method='delete' data-remote='true' href='/comments/<%=@comment.id%>'>Delete</a>
-          <a class='edit-link' href='#' style='display: inline;'>Edit</a>
+          <!--<a class='edit-link' href='#' style='display: inline;'>Edit</a>-->
         </div>
       <% end %>
     </div>

@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
   before_validation :format_url
   validates :user_id, presence: true
   validates :url, presence: true, uniqueness: { case_sensitive: false }
-  validate :url, :valid_url
+  # validate :url, :valid_url
   validates :content, presence: true, length: { minimum: 10 }
   validates :rating, presence: true, inclusion: 1..5
 
@@ -25,21 +25,27 @@ private
   end
     
   def valid_url
-    begin
-      if (self.url == "www.test.com")
-        return
-      end
-      
-      review_url = URI.parse("http://"+url)
-      req = Net::HTTP.new(review_url.host, review_url.port)
-      res = req.request_get(review_url.path)
-      if res.code != "200"
-        errors.add(:url, "is not valid")
-      end
-      
-    rescue
+    if self.url =~ /https?:\/\/[\S]+/
+      return
+    else
       errors.add(:url, "is not valid")
     end
+      
+    # begin
+    #   if (self.url == "www.test.com")
+    #     return
+    #   end
+      
+    #   review_url = URI.parse("http://"+url)
+    #   req = Net::HTTP.new(review_url.host, review_url.port)
+    #   res = req.request_get(review_url.path)
+    #   if res.code != "200"
+    #     errors.add(:url, "is not valid")
+    #   end
+      
+    # rescue
+    #   errors.add(:url, "is not valid")
+    # end
   end
 
 end

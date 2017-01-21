@@ -15,3 +15,4 @@ var editCommentModule = (function editCommentHelpers() {
     edit_errors: edit_errors
   }
 })();
+
