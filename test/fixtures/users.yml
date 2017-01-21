@@ -1,9 +1,23 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+michael:
+  name: Ryan
+  email: ryan@example.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
-one:
-  username: MyString
-  email: MyString
+archer:
+  name: Sterling Ross
+  email: example2@example.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
 
-two:
-  username: MyString
-  email: MyString
+lana:
+  name: Chelsea Leung
+  email: example3@example.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
+
+mallory:
+  name: Gavin Lee
+  email: example4@example.com
+  activated: true
+  activated_at: <%= Time.zone.now %>
